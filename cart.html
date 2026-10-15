@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090612">
+  <meta name="description" content="Твій кошик VAMP — обери блокноти для власного всесвіту.">
+  <title>Кошик — VAMP</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body class="cart-page">
+
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      VAMP<span class="logo-dot">.</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+      ☰
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Головна</a>
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">Про нас</a>
+      <a href="contacts.html">Контакти</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-button" id="searchToggle" aria-label="Пошук">⌕</button>
+      <a class="header-link" href="favorites.html">
+        ♡ <span id="favoritesCount">0</span>
+      </a>
+      <a class="header-link cart-link active" href="cart.html">
+        🛍 <span id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="global-search" id="searchBox" hidden>
+    <input
+      type="search"
+      id="globalSearch"
+      placeholder="Знайти свій всесвіт..."
+      aria-label="Пошук товарів"
+    >
+  </div>
+
+  <main>
+    <section class="page-hero cart-hero">
+      <div class="page-hero-content">
+        <span class="eyebrow">ТВОЄ МАЙБУТНЄ ЗАМОВЛЕННЯ</span>
+        <h1>ТВІЙ <span class="gradient-text">КОШИК</span></h1>
+        <p>Зібрали щось особливе? Перевір своє замовлення нижче.</p>
+
+        <div class="breadcrumb">
+          <a href="index.html">Головна</a>
+          <span>/</span>
+          <span>Кошик</span>
+        </div>
+      </div>
+
+      <div class="catalog-orbit orbit-one"></div>
+      <div class="catalog-orbit orbit-two"></div>
+    </section>
+
+    <section class="section cart-section">
+      <div class="cart-layout">
+
+        <div class="cart-main">
+          <div class="cart-section-heading">
+            <div>
+              <span class="eyebrow">ТВОЯ КОЛЕКЦІЯ</span>
+              <h2>Обрані блокноти</h2>
+            </div>
+
+            <a href="catalog.html" class="text-link">
+              ← Продовжити покупки
+            </a>
+          </div>
+
+          <div class="cart-table-heading">
+            <span>Товар</span>
+            <span>Ціна</span>
+            <span>Кількість</span>
+            <span>Сума</span>
+          </div>
+
+          <div id="cartItems" class="cart-items">
+            <!-- Товари кошика підставляються через app.js -->
+          </div>
+
+          <div class="cart-empty" id="cartEmpty" hidden>
+            <div class="cart-empty-symbol">✦</div>
+            <h3>Твій кошик поки порожній</h3>
+            <p>
+              У кожного всесвіту є своя історія.
+              Почни свою з блокнота VAMP.
+            </p>
+            <a href="catalog.html" class="btn btn-primary">
+              Перейти до каталогу ↗
+            </a>
+          </div>
+
+          <div class="cart-bottom-actions">
+            <a href="catalog.html" class="btn btn-outline">
+              ← Повернутися до каталогу
+            </a>
+
+            <button
+              type="button"
+              class="text-button"
+              id="clearCart"
+            >
+              Очистити кошик
+            </button>
+          </div>
+        </div>
+
+        <aside class="cart-summary">
+          <span class="eyebrow">ПІДСУМОК</span>
+          <h2>Твоє замовлення</h2>
+
+          <div class="summary-row">
+            <span>Товарів у кошику</span>
+            <strong id="summaryItems">0</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Вартість товарів</span>
+            <strong id="summarySubtotal">0 ₴</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Доставка</span>
+            <span class="muted">За тарифами перевізника</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total">
+            <span>Разом</span>
+            <strong id="cartTotal">0 ₴</strong>
+          </div>
+
+          <a
+            href="checkout.html"
+            class="btn btn-primary btn-checkout"
+            id="checkoutButton"
+          >
+            Оформити замовлення <span>↗</span>
+          </a>
+
+          <div class="cart-security-note">
+            <span>✦</span>
+            <p>Перевір своє замовлення перед оформленням.</p>
+          </div>
+
+          <div class="payment-methods">
+            <span>ДЕТАЛІ ОПЛАТИ</span>
+            <div class="payment-labels">
+              <span>Картка</span>
+              <span>При отриманні</span>
+            </div>
+            <p class="muted">
+              Доступні способи оплати підтверджуються під час оформлення.
+            </p>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <section class="section cart-recommendations">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">МОЖЕШ ЩЕ ЗАКОХАТИСЯ</span>
+          <h2>Знайди ще один всесвіт</h2>
+        </div>
+
+        <a href="catalog.html" class="text-link">
+          Усі блокноти ↗
+        </a>
+      </div>
+
+      <div class="product-grid" id="cartRecommendations">
+        <!-- Рекомендовані товари можна додати через app.js -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="logo" href="index.html">
+          VAMP<span class="logo-dot">.</span>
+        </a>
+        <p>Записуй ідеї. Створюй світи. Будь собою.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Навігація</h4>
+        <a href="index.html">Головна</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="about.html">Про нас</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Допомога</h4>
+        <a href="delivery.html">Доставка й оплата</a>
+        <a href="contacts.html">Контакти</a>
+        <a href="favorites.html">Обране</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 VAMP. Усі права захищені.</span>
+      <span>Зроблено з ✦ у власному всесвіті</span>
+    </div>
+  </footer>
+
+</body>
+</html>

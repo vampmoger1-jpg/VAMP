@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090612">
+  <meta name="description" content="Інформація про доставку, оплату та повернення замовлень VAMP.">
+  <title>Доставка й оплата — VAMP</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body class="delivery-page">
+
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      VAMP<span class="logo-dot">.</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+      ☰
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Головна</a>
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">Про нас</a>
+      <a href="contacts.html">Контакти</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-button" id="searchToggle" aria-label="Пошук">⌕</button>
+      <a class="header-link" href="favorites.html">
+        ♡ <span id="favoritesCount">0</span>
+      </a>
+      <a class="header-link cart-link" href="cart.html">
+        🛍 <span id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="global-search" id="searchBox" hidden>
+    <input
+      type="search"
+      id="globalSearch"
+      placeholder="Знайти свій всесвіт..."
+      aria-label="Пошук товарів"
+    >
+  </div>
+
+  <main>
+
+    <section class="page-hero delivery-hero">
+      <div class="page-hero-content">
+        <span class="eyebrow">УСЕ ПРО ТВОЄ ЗАМОВЛЕННЯ</span>
+        <h1>ДОСТАВКА <span class="gradient-text">Й ОПЛАТА</span></h1>
+        <p>
+          Усе важливе про отримання блокнотів VAMP —
+          просто та зрозуміло.
+        </p>
+
+        <div class="breadcrumb">
+          <a href="index.html">Головна</a>
+          <span>/</span>
+          <span>Доставка й оплата</span>
+        </div>
+      </div>
+
+      <div class="catalog-orbit orbit-one"></div>
+      <div class="catalog-orbit orbit-two"></div>
+    </section>
+
+    <section class="section delivery-methods">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ЯК ОТРИМАТИ ЗАМОВЛЕННЯ</span>
+          <h2>Варіанти доставки</h2>
+        </div>
+
+        <p class="muted">
+          Обери спосіб, який найкраще тобі підходить.
+        </p>
+      </div>
+
+      <div class="delivery-cards">
+
+        <article class="delivery-card">
+          <div class="delivery-card-icon">📦</div>
+          <span class="eyebrow">ВАРІАНТ 01</span>
+          <h3>Нова пошта</h3>
+          <p>
+            Доставка до відділення або поштомата, якщо цей спосіб
+            доступний для твого населеного пункту.
+          </p>
+          <div class="delivery-card-footer">
+            <span>Термін і вартість</span>
+            <strong>За тарифами перевізника</strong>
+          </div>
+        </article>
+
+        <article class="delivery-card">
+          <div class="delivery-card-icon">✉</div>
+          <span class="eyebrow">ВАРІАНТ 02</span>
+          <h3>Укрпошта</h3>
+          <p>
+            Можливість отримати замовлення у відділенні
+            Укрпошти за доступним маршрутом.
+          </p>
+          <div class="delivery-card-footer">
+            <span>Термін і вартість</span>
+            <strong>За тарифами перевізника</strong>
+          </div>
+        </article>
+
+        <article class="delivery-card">
+          <div class="delivery-card-icon">✦</div>
+          <span class="eyebrow">ВАЖЛИВО</span>
+          <h3>Підтвердження</h3>
+          <p>
+            Перед відправленням перевіряй повідомлення продавця
+            та правильність даних доставки.
+          </p>
+          <div class="delivery-card-footer">
+            <span>Адреса та контакти</span>
+            <strong>Перевір перед відправленням</strong>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section delivery-process-section">
+      <div class="delivery-process-grid">
+
+        <div class="delivery-process-copy">
+          <span class="eyebrow">УСЕ ПРОСТО</span>
+          <h2>Як проходить <span class="gradient-text">замовлення</span></h2>
+          <p>
+            Від вибору блокнота до отримання посилки —
+            кілька простих кроків.
+          </p>
+
+          <a href="catalog.html" class="btn btn-primary">
+            Обрати блокнот ↗
+          </a>
+        </div>
+
+        <div class="delivery-steps">
+
+          <article class="delivery-step">
+            <div class="delivery-step-number">01</div>
+            <div>
+              <h3>Обери блокнот</h3>
+              <p>Знайди дизайн у каталозі та додай його до кошика.</p>
+            </div>
+          </article>
+
+          <article class="delivery-step">
+            <div class="delivery-step-number">02</div>
+            <div>
+              <h3>Оформи замовлення</h3>
+              <p>Вкажи контактні дані, місто та спосіб доставки.</p>
+            </div>
+          </article>
+
+          <article class="delivery-step">
+            <div class="delivery-step-number">03</div>
+            <div>
+              <h3>Дочекайся підтвердження</h3>
+              <p>Продавець має підтвердити наявність товару та умови замовлення.</p>
+            </div>
+          </article>
+
+          <article class="delivery-step">
+            <div class="delivery-step-number">04</div>
+            <div>
+              <h3>Отримай посилку</h3>
+              <p>Перевір повідомлення від перевізника та забери замовлення.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section payment-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">БЕЗ НЕПРИЄМНИХ СЮРПРИЗІВ</span>
+          <h2>Способи оплати</h2>
+        </div>
+      </div>
+
+      <div class="payment-info-grid">
+
+        <article class="payment-info-card">
+          <div class="payment-info-icon">₴</div>
+          <h3>Оплата при отриманні</h3>
+          <p>
+            Якщо продавець підтримує цей спосіб, оплата здійснюється
+            під час отримання посилки. Перевір можливі комісії
+            перевізника заздалегідь.
+          </p>
+        </article>
+
+        <article class="payment-info-card">
+          <div class="payment-info-icon">▤</div>
+          <h3>Переказ на картку</h3>
+          <p>
+            Використовуй лише реквізити, отримані безпосередньо
+            від перевіреного продавця через офіційний канал зв'язку.
+          </p>
+        </article>
+
+        <article class="payment-info-card">
+          <div class="payment-info-icon">◇</div>
+          <h3>Підтвердження вартості</h3>
+          <p>
+            Перед оплатою уточни загальну вартість товарів,
+            доставки та можливих додаткових комісій.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section returns-section">
+      <div class="returns-panel">
+        <div class="returns-panel-art">
+          <div class="returns-orbit"></div>
+          <div class="returns-symbol">↺</div>
+        </div>
+
+        <div class="returns-panel-content">
+          <span class="eyebrow">ПОКУПКА БЕЗ ЗАЙВИХ ХВИЛЮВАНЬ</span>
+          <h2>Повернення та обмін</h2>
+          <p>
+            Якщо товар має дефект або виникла проблема із замовленням,
+            зв'яжися з продавцем і поясни ситуацію. Умови повернення
+            та обміну залежать від обставин покупки й чинного законодавства.
+          </p>
+
+          <ul class="returns-list">
+            <li>Збережи підтвердження замовлення.</li>
+            <li>Опиши проблему та додай фото, якщо це доречно.</li>
+            <li>Узгодь подальші дії з продавцем.</li>
+          </ul>
+
+          <a href="contacts.html" class="btn btn-outline">
+            Зв'язатися з нами ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section delivery-faq-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ВІДПОВІДАЄМО НА ЗАПИТАННЯ</span>
+          <h2>Часті запитання</h2>
+        </div>
+      </div>
+
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary>Скільки коштує доставка?</summary>
+          <p>
+            Вартість залежить від перевізника, маршруту та умов
+            відправлення. Точну суму потрібно уточнити перед замовленням.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Коли відправлять моє замовлення?</summary>
+          <p>
+            Термін відправлення має підтвердити продавець після
+            отримання та перевірки замовлення.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Чи можна змінити адресу доставки?</summary>
+          <p>
+            Якщо замовлення ще не відправлено, звернися до продавця
+            якомога швидше. Після відправлення можливість змін залежить
+            від правил перевізника.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Що робити, якщо посилка не прийшла?</summary>
+          <p>
+            Перевір статус відправлення за номером накладної,
+            а потім звернися до перевізника або продавця.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Як зв'язатися з VAMP?</summary>
+          <p>
+            Відкрий сторінку контактів і скористайся доступним
+            способом зв'язку.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+    <section class="newsletter-section section">
+      <div class="newsletter-content">
+        <span class="eyebrow">ЛИСТИ З ГАЛАКТИКИ VAMP</span>
+        <h2>Трохи магії у твоїй пошті</h2>
+        <p>Дізнавайся про нові колекції та оновлення.</p>
+
+        <form id="newsletterForm" class="newsletter-form">
+          <input
+            type="email"
+            id="newsletterEmail"
+            placeholder="Твоя електронна пошта"
+            required
+          >
+          <button class="btn btn-primary" type="submit">
+            Приєднатися ↗
+          </button>
+        </form>
+
+        <p class="form-note" id="newsletterMessage">
+          Будь ближче до світу VAMP.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="logo" href="index.html">
+          VAMP<span class="logo-dot">.</span>
+        </a>
+        <p>Записуй ідеї. Створюй світи. Будь собою.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Навігація</h4>
+        <a href="index.html">Головна</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="about.html">Про нас</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Підтримка</h4>
+        <a href="contacts.html">Контакти</a>
+        <a href="cart.html">Кошик</a>
+        <a href="favorites.html">Обране</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 VAMP. Усі права захищені.</span>
+      <span>Зроблено з ✦ у власному всесвіті</span>
+    </div>
+  </footer>
+
+</body>
+</html>

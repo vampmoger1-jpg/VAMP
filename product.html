@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090612">
+  <meta name="description" content="Відкрий свій новий всесвіт із блокнотами VAMP.">
+  <title>Блокнот — VAMP</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body class="product-page">
+
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      VAMP<span class="logo-dot">.</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+      ☰
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Головна</a>
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">Про нас</a>
+      <a href="contacts.html">Контакти</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-button" id="searchToggle" aria-label="Пошук">⌕</button>
+      <a class="header-link" href="favorites.html">
+        ♡ <span id="favoritesCount">0</span>
+      </a>
+      <a class="header-link cart-link" href="cart.html">
+        🛍 <span id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="global-search" id="searchBox" hidden>
+    <input
+      type="search"
+      id="globalSearch"
+      placeholder="Знайти свій всесвіт..."
+      aria-label="Пошук товарів"
+    >
+  </div>
+
+  <main>
+    <div class="breadcrumb product-breadcrumb">
+      <a href="index.html">Головна</a>
+      <span>/</span>
+      <a href="catalog.html">Каталог</a>
+      <span>/</span>
+      <span>Блокнот</span>
+    </div>
+
+    <section class="product-detail-section section">
+      <div id="productDetail">
+        <!-- Інформація про товар підставляється через app.js -->
+        <div class="product-detail-layout">
+          <div class="product-gallery">
+            <div class="product-main-image">
+              <div class="product-image-placeholder">
+                <span class="placeholder-orbit">✦</span>
+                <span class="placeholder-brand">VAMP</span>
+                <span class="placeholder-caption">YOUR OWN UNIVERSE</span>
+              </div>
+            </div>
+
+            <div class="product-thumbnails">
+              <div class="product-thumbnail active">✦</div>
+              <div class="product-thumbnail">☾</div>
+              <div class="product-thumbnail">✧</div>
+            </div>
+          </div>
+
+          <div class="product-information">
+            <span class="eyebrow">КОЛЕКЦІЯ VAMP</span>
+            <h1 id="productTitle">Твій новий блокнот</h1>
+
+            <div class="product-rating">
+              <span class="rating-stars">★★★★★</span>
+              <span class="muted">Твій простір для ідей</span>
+            </div>
+
+            <p class="product-price" id="productPrice">— ₴</p>
+
+            <p class="product-description" id="productDescription">
+              Блокнот для твоїх планів, думок, мрій та творчих ідей.
+              Створи власний всесвіт разом із VAMP.
+            </p>
+
+            <div class="product-meta">
+              <div class="product-meta-row">
+                <span>Бренд</span>
+                <strong>VAMP</strong>
+              </div>
+              <div class="product-meta-row">
+                <span>Формат</span>
+                <strong id="productFormat">A5</strong>
+              </div>
+              <div class="product-meta-row">
+                <span>Сторінки</span>
+                <strong id="productPages">—</strong>
+              </div>
+              <div class="product-meta-row">
+                <span>Наявність</span>
+                <strong class="stock-status">Є в колекції</strong>
+              </div>
+            </div>
+
+            <div class="product-purchase">
+              <label class="quantity-label" for="productQuantity">
+                Кількість
+              </label>
+
+              <div class="quantity-control">
+                <button type="button" id="quantityMinus" aria-label="Зменшити кількість">
+                  −
+                </button>
+                <input
+                  type="number"
+                  id="productQuantity"
+                  value="1"
+                  min="1"
+                  max="99"
+                  aria-label="Кількість блокнотів"
+                >
+                <button type="button" id="quantityPlus" aria-label="Збільшити кількість">
+                  +
+                </button>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-primary btn-add-product"
+                id="addProductToCart"
+                data-add-cart=""
+              >
+                Додати в кошик <span>↗</span>
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-outline btn-favorite-product"
+                id="productFavorite"
+                data-favorite=""
+              >
+                ♡ Додати в обране
+              </button>
+            </div>
+
+            <div class="product-benefits">
+              <div class="benefit-item">
+                <span class="benefit-icon">✦</span>
+                <div>
+                  <strong>Стиль VAMP</strong>
+                  <p>Дизайн із характером</p>
+                </div>
+              </div>
+
+              <div class="benefit-item">
+                <span class="benefit-icon">↗</span>
+                <div>
+                  <strong>Зручне замовлення</strong>
+                  <p>Усе необхідне в одному місці</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-story-section section">
+      <div class="product-story-grid">
+        <div class="product-story-copy">
+          <span class="eyebrow">БІЛЬШЕ, НІЖ БЛОКНОТ</span>
+          <h2>Твої думки заслуговують на <span class="gradient-text">власний всесвіт</span></h2>
+          <p>
+            Записуй плани, створюй списки, малюй, вигадуй нові історії
+            або просто залишай на сторінках те, що важливо саме тобі.
+          </p>
+          <a href="catalog.html" class="btn btn-outline">
+            Переглянути колекцію ↗
+          </a>
+        </div>
+
+        <div class="product-story-art">
+          <div class="story-ring ring-one"></div>
+          <div class="story-ring ring-two"></div>
+          <div class="story-star">✦</div>
+          <div class="story-word">DREAM<br>CREATE<br>REPEAT</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section related-products-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ЩЕ ТРОХИ НАТХНЕННЯ</span>
+          <h2>Інші всесвіти VAMP</h2>
+        </div>
+        <a href="catalog.html" class="text-link">Усі блокноти ↗</a>
+      </div>
+
+      <div class="product-grid" id="relatedProducts">
+        <!-- Схожі товари можна додати через app.js -->
+      </div>
+    </section>
+
+    <section class="newsletter-section section">
+      <div class="newsletter-content">
+        <span class="eyebrow">ЛИСТИ З ГАЛАКТИКИ VAMP</span>
+        <h2>Трохи магії у твоїй пошті</h2>
+        <p>Дізнавайся про нові колекції та оновлення.</p>
+
+        <form id="newsletterForm" class="newsletter-form">
+          <input
+            type="email"
+            id="newsletterEmail"
+            placeholder="Твоя електронна пошта"
+            required
+          >
+          <button class="btn btn-primary" type="submit">
+            Приєднатися ↗
+          </button>
+        </form>
+
+        <p class="form-note" id="newsletterMessage">
+          Будь ближче до світу VAMP.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="logo" href="index.html">VAMP<span class="logo-dot">.</span></a>
+        <p>Записуй ідеї. Створюй світи. Будь собою.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Навігація</h4>
+        <a href="index.html">Головна</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="about.html">Про нас</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Допомога</h4>
+        <a href="delivery.html">Доставка й оплата</a>
+        <a href="contacts.html">Контакти</a>
+        <a href="cart.html">Кошик</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 VAMP. Усі права захищені.</span>
+      <span>Зроблено з ✦ у власному всесвіті</span>
+    </div>
+  </footer>
+
+</body>
+</html>

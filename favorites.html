@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090612">
+  <meta name="description" content="Збережені блокноти VAMP — твоя особлива колекція.">
+  <title>Обране — VAMP</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body class="favorites-page">
+
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      VAMP<span class="logo-dot">.</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+      ☰
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Головна</a>
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">Про нас</a>
+      <a href="contacts.html">Контакти</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-button" id="searchToggle" aria-label="Пошук">⌕</button>
+      <a class="header-link active" href="favorites.html">
+        ♡ <span id="favoritesCount">0</span>
+      </a>
+      <a class="header-link cart-link" href="cart.html">
+        🛍 <span id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="global-search" id="searchBox" hidden>
+    <input
+      type="search"
+      id="globalSearch"
+      placeholder="Знайти свій всесвіт..."
+      aria-label="Пошук товарів"
+    >
+  </div>
+
+  <main>
+    <section class="page-hero favorites-hero">
+      <div class="page-hero-content">
+        <span class="eyebrow">ТЕ, ЩО ТОБІ СПОДОБАЛОСЯ</span>
+        <h1>ТВОЄ <span class="gradient-text">ОБРАНЕ</span></h1>
+        <p>
+          Зберігай улюблені дизайни, повертайся до них
+          і збирай власну колекцію VAMP.
+        </p>
+
+        <div class="breadcrumb">
+          <a href="index.html">Головна</a>
+          <span>/</span>
+          <span>Обране</span>
+        </div>
+      </div>
+
+      <div class="catalog-orbit orbit-one"></div>
+      <div class="catalog-orbit orbit-two"></div>
+    </section>
+
+    <section class="section favorites-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ТВОЯ ОСОБИСТА КОЛЕКЦІЯ</span>
+          <h2>Збережені блокноти</h2>
+        </div>
+
+        <a href="catalog.html" class="btn btn-outline">
+          + Знайти ще
+        </a>
+      </div>
+
+      <div class="favorites-toolbar">
+        <p class="muted">
+          Товари, які ти зберігла для себе.
+        </p>
+
+        <button
+          type="button"
+          class="text-button"
+          id="clearFavorites"
+        >
+          Очистити обране
+        </button>
+      </div>
+
+      <div
+        class="product-grid"
+        id="favoritesProducts"
+        aria-live="polite"
+      >
+        <!-- Обрані товари підставляються через app.js -->
+      </div>
+
+      <div class="empty-state favorites-empty" id="favoritesEmpty" hidden>
+        <div class="empty-icon">♡</div>
+        <h3>Тут ще немає улюбленців</h3>
+        <p>
+          Переглянь каталог і натисни на сердечко біля блокнота,
+          який тобі сподобається.
+        </p>
+        <a href="catalog.html" class="btn btn-primary">
+          Відкрити каталог ↗
+        </a>
+      </div>
+    </section>
+
+    <section class="favorites-message-section section">
+      <div class="favorites-message-card">
+        <div class="favorites-message-symbol">✦</div>
+        <div>
+          <span class="eyebrow">ТВОЯ ІСТОРІЯ — ТВОЇ ПРАВИЛА</span>
+          <h2>Обирай те, що надихає</h2>
+          <p>
+            Від темної галактики до ніжних пастельних відтінків —
+            у VAMP знайдеться місце для кожної ідеї.
+          </p>
+        </div>
+        <a href="catalog.html" class="btn btn-primary">
+          Дослідити колекцію ↗
+        </a>
+      </div>
+    </section>
+
+    <section class="newsletter-section section">
+      <div class="newsletter-content">
+        <span class="eyebrow">ЛИСТИ З ГАЛАКТИКИ VAMP</span>
+        <h2>Трохи магії у твоїй пошті</h2>
+        <p>Дізнавайся про нові колекції та оновлення.</p>
+
+        <form id="newsletterForm" class="newsletter-form">
+          <input
+            type="email"
+            id="newsletterEmail"
+            placeholder="Твоя електронна пошта"
+            required
+          >
+          <button class="btn btn-primary" type="submit">
+            Приєднатися ↗
+          </button>
+        </form>
+
+        <p class="form-note" id="newsletterMessage">
+          Будь ближче до світу VAMP.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="logo" href="index.html">
+          VAMP<span class="logo-dot">.</span>
+        </a>
+        <p>Записуй ідеї. Створюй світи. Будь собою.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Навігація</h4>
+        <a href="index.html">Головна</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="about.html">Про нас</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Покупцям</h4>
+        <a href="delivery.html">Доставка й оплата</a>
+        <a href="contacts.html">Контакти</a>
+        <a href="cart.html">Кошик</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 VAMP. Усі права захищені.</span>
+      <span>Зроблено з ✦ у власному всесвіті</span>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090612">
+  <meta name="description" content="Оформлення замовлення блокнотів VAMP.">
+  <title>Оформлення замовлення — VAMP</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body class="checkout-page">
+
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      VAMP<span class="logo-dot">.</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+      ☰
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Головна</a>
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">Про нас</a>
+      <a href="contacts.html">Контакти</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-link" href="favorites.html">
+        ♡ <span id="favoritesCount">0</span>
+      </a>
+      <a class="header-link cart-link" href="cart.html">
+        🛍 <span id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero checkout-hero">
+      <div class="page-hero-content">
+        <span class="eyebrow">ЩЕ ТРОХИ — І ЗАМОВЛЕННЯ ГОТОВЕ</span>
+        <h1>ОФОРМЛЕННЯ <span class="gradient-text">ЗАМОВЛЕННЯ</span></h1>
+        <p>Заповни дані, щоб ми знали, куди відправити твої блокноти.</p>
+
+        <div class="breadcrumb">
+          <a href="index.html">Головна</a>
+          <span>/</span>
+          <a href="cart.html">Кошик</a>
+          <span>/</span>
+          <span>Оформлення</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section checkout-section">
+      <form id="checkoutForm" class="checkout-layout">
+
+        <div class="checkout-form-column">
+
+          <div class="checkout-card">
+            <div class="checkout-card-heading">
+              <span class="checkout-step">01</span>
+              <div>
+                <h2>Контактні дані</h2>
+                <p>Як із тобою зв'язатися щодо замовлення.</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="customerName">Ім'я та прізвище *</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="customerName"
+                  name="customerName"
+                  placeholder="Твоє ім'я"
+                  autocomplete="name"
+                  required
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="customerPhone">Номер телефону *</label>
+                <input
+                  class="form-input"
+                  type="tel"
+                  id="customerPhone"
+                  name="customerPhone"
+                  placeholder="+380..."
+                  autocomplete="tel"
+                  required
+                >
+              </div>
+
+              <div class="form-field full-width">
+                <label for="customerEmail">Електронна пошта</label>
+                <input
+                  class="form-input"
+                  type="email"
+                  id="customerEmail"
+                  name="customerEmail"
+                  placeholder="name@example.com"
+                  autocomplete="email"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-card">
+            <div class="checkout-card-heading">
+              <span class="checkout-step">02</span>
+              <div>
+                <h2>Доставка</h2>
+                <p>Обери зручний спосіб отримання.</p>
+              </div>
+            </div>
+
+            <div class="delivery-options">
+              <label class="choice-card">
+                <input
+                  type="radio"
+                  name="deliveryMethod"
+                  value="nova-poshta-branch"
+                  required
+                >
+                <span class="choice-icon">📦</span>
+                <span class="choice-content">
+                  <strong>Нова пошта — відділення</strong>
+                  <small>Отримай посилку у відділенні</small>
+                </span>
+              </label>
+
+              <label class="choice-card">
+                <input
+                  type="radio"
+                  name="deliveryMethod"
+                  value="nova-poshta-locker"
+                >
+                <span class="choice-icon">▦</span>
+                <span class="choice-content">
+                  <strong>Нова пошта — поштомат</strong>
+                  <small>Забери посилку самостійно</small>
+                </span>
+              </label>
+
+              <label class="choice-card">
+                <input
+                  type="radio"
+                  name="deliveryMethod"
+                  value="ukrposhta"
+                >
+                <span class="choice-icon">✉</span>
+                <span class="choice-content">
+                  <strong>Укрпошта</strong>
+                  <small>Доставка до обраного відділення</small>
+                </span>
+              </label>
+            </div>
+
+            <div class="form-grid delivery-address-fields">
+              <div class="form-field">
+                <label for="deliveryCity">Місто або населений пункт *</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="deliveryCity"
+                  name="deliveryCity"
+                  placeholder="Наприклад, Київ"
+                  autocomplete="address-level2"
+                  required
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="deliveryBranch">Відділення або поштомат *</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="deliveryBranch"
+                  name="deliveryBranch"
+                  placeholder="Номер або адреса"
+                  required
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-card">
+            <div class="checkout-card-heading">
+              <span class="checkout-step">03</span>
+              <div>
+                <h2>Оплата</h2>
+                <p>Обери бажаний спосіб оплати.</p>
+              </div>
+            </div>
+
+            <div class="payment-options">
+              <label class="choice-card">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="cash-on-delivery"
+                  required
+                >
+                <span class="choice-icon">₴</span>
+                <span class="choice-content">
+                  <strong>Оплата при отриманні</strong>
+                  <small>Можлива додаткова комісія перевізника</small>
+                </span>
+              </label>
+
+              <label class="choice-card">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="bank-transfer"
+                >
+                <span class="choice-icon">▤</span>
+                <span class="choice-content">
+                  <strong>Переказ на картку</strong>
+                  <small>Реквізити мають бути надані продавцем</small>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="checkout-card">
+            <div class="checkout-card-heading">
+              <span class="checkout-step">04</span>
+              <div>
+                <h2>Коментар до замовлення</h2>
+                <p>Необов'язково — додай важливу інформацію.</p>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="orderComment">Коментар</label>
+              <textarea
+                class="form-input"
+                id="orderComment"
+                name="orderComment"
+                rows="4"
+                placeholder="Напиши тут свої побажання..."
+              ></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <aside class="checkout-summary">
+          <span class="eyebrow">ФІНАЛЬНА ПЕРЕВІРКА</span>
+          <h2>Твоє замовлення</h2>
+
+          <div id="checkoutItems" class="checkout-items">
+            <!-- Список товарів підставляється через JavaScript -->
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-row">
+            <span>Кількість товарів</span>
+            <strong id="checkoutItemCount">0</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Вартість товарів</span>
+            <strong id="checkoutSubtotal">0 ₴</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Доставка</span>
+            <span class="muted">За тарифами перевізника</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total">
+            <span>Разом за товари</span>
+            <strong id="checkoutTotal">0 ₴</strong>
+          </div>
+
+          <p class="checkout-disclaimer">
+            Вартість доставки та можливі додаткові комісії сплачуються
+            відповідно до умов перевізника.
+          </p>
+
+          <label class="checkout-consent">
+            <input type="checkbox" id="orderConsent" required>
+            <span>
+              Я перевірив(-ла) дані замовлення та погоджуюся
+              з умовами оформлення.
+            </span>
+          </label>
+
+          <button type="submit" class="btn btn-primary btn-checkout">
+            Підтвердити замовлення ↗
+          </button>
+
+          <a href="cart.html" class="back-to-cart">
+            ← Повернутися до кошика
+          </a>
+        </aside>
+
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="logo" href="index.html">
+          VAMP<span class="logo-dot">.</span>
+        </a>
+        <p>Записуй ідеї. Створюй світи. Будь собою.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Навігація</h4>
+        <a href="index.html">Головна</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="about.html">Про нас</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Допомога</h4>
+        <a href="delivery.html">Доставка й оплата</a>
+        <a href="contacts.html">Контакти</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 VAMP. Усі права захищені.</span>
+      <span>Зроблено з ✦ у власному всесвіті</span>
+    </div>
+  </footer>
+
+</body>
+</html>
