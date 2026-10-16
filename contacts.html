@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакти | VAMP</title>
+  <meta name="description" content="Зв'яжіться з VAMP — ми допоможемо з вибором блокнота та замовленням.">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .contact-page {
+      width: min(1100px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 55px 0 80px;
+    }
+
+    .contact-heading {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .contact-heading .eyebrow {
+      color: #c084fc;
+      letter-spacing: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .contact-heading h1 {
+      font-size: clamp(38px, 6vw, 64px);
+      margin: 12px 0;
+      background: linear-gradient(90deg, #fff, #c084fc, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .contact-heading p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: #b8adc8;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .contact-panel {
+      padding: 28px;
+      border: 1px solid rgba(192, 132, 252, 0.25);
+      border-radius: 22px;
+      background: linear-gradient(145deg, #191225, #0e0a17);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .contact-panel h2 {
+      margin-top: 0;
+      font-size: 25px;
+    }
+
+    .contact-panel > p {
+      color: #b8adc8;
+    }
+
+    .contact-method {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      margin-top: 23px;
+      padding: 16px;
+      border: 1px solid rgba(192, 132, 252, 0.15);
+      border-radius: 14px;
+      background: rgba(168, 85, 247, 0.06);
+    }
+
+    .contact-icon {
+      width: 45px;
+      height: 45px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(168, 85, 247, 0.17);
+      font-size: 22px;
+    }
+
+    .contact-method h3 {
+      margin: 0 0 4px;
+      font-size: 15px;
+    }
+
+    .contact-method p {
+      margin: 0;
+      color: #c084fc;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 17px;
+      margin-top: 22px;
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 7px;
+      color: #eee5fa;
+      font-size: 14px;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      padding: 13px 14px;
+      color: #fff;
+      background: #0d0915;
+      border: 1px solid #38264b;
+      border-radius: 11px;
+      font: inherit;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus {
+      outline: 2px solid #a855f7;
+      outline-offset: 1px;
+    }
+
+    .contact-form textarea {
+      min-height: 135px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      padding: 15px 20px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #a855f7, #6d28d9);
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      filter: brightness(1.15);
+    }
+
+    .contact-note {
+      color: #9f93af;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .contact-status {
+      padding: 12px;
+      border-radius: 10px;
+      background: #211632;
+      color: #e9d5ff;
+    }
+
+    .contact-status:empty {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-panel {
+        padding: 21px;
+      }
+
+      .contact-page {
+        padding-top: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav>
+      <a href="index.html" class="site-logo">VAMP<span>.</span></a>
+
+      <a href="index.html">Головна</a>
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">Про нас</a>
+      <a href="delivery.html">Доставка</a>
+      <a href="contacts.html" aria-current="page">Контакти</a>
+      <a href="favorites.html">♡ Обране</a>
+      <a href="cart.html">Кошик 🛒</a>
+    </nav>
+  </header>
+
+  <main class="contact-page">
+
+    <section class="contact-heading">
+      <span class="eyebrow">МИ НА ЗВ'ЯЗКУ</span>
+      <h1>Контакти</h1>
+      <p>
+        Маєш запитання про наші блокноти, замовлення або доставку?
+        Напиши нам — будемо раді допомогти.
+      </p>
+    </section>
+
+    <section class="contact-grid">
+
+      <div class="contact-panel">
+        <h2>Знайди нас у галактиці ✦</h2>
+        <p>
+          Обери зручний спосіб зв'язку з командою VAMP.
+        </p>
+
+        <div class="contact-method">
+          <div class="contact-icon">✉</div>
+          <div>
+            <h3>Електронна пошта</h3>
+            <p>Вкажи свою справжню адресу</p>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="contact-icon">◎</div>
+          <div>
+            <h3>Instagram</h3>
+            <p>Додай посилання на свій профіль</p>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="contact-icon">✦</div>
+          <div>
+            <h3>Підтримка</h3>
+            <p>Запитання щодо замовлень і товарів</p>
+          </div>
+        </div>
+
+        <p class="contact-note">
+          Перед публікацією заміни підказки вище на свої справжні
+          контактні дані.
+        </p>
+      </div>
+
+      <div class="contact-panel">
+        <h2>Напиши нам 💜</h2>
+        <p>Заповни форму, щоб підготувати повідомлення.</p>
+
+        <form class="contact-form" id="contactForm">
+
+          <div>
+            <label for="contactName">Твоє ім'я</label>
+            <input
+              type="text"
+              id="contactName"
+              name="name"
+              placeholder="Як до тебе звертатися?"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="contactEmail">Електронна пошта</label>
+            <input
+              type="email"
+              id="contactEmail"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="contactTopic">Тема повідомлення</label>
+            <select id="contactTopic" name="topic" required>
+              <option value="">Обери тему</option>
+              <option value="product">Запитання про блокнот</option>
+              <option value="order">Моє замовлення</option>
+              <option value="delivery">Доставка й оплата</option>
+              <option value="other">Інше</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="contactMessage">Повідомлення</label>
+            <textarea
+              id="contactMessage"
+              name="message"
+              placeholder="Напиши своє запитання..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit">Підготувати повідомлення ↗</button>
+
+          <p class="contact-note">
+            Ця форма відкриє поштову програму на твоєму пристрої.
+            Для автоматичного надсилання без неї потрібно підключити
+            сервіс обробки форм.
+          </p>
+
+          <div
+            class="contact-status"
+            id="contactStatus"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </form>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 VAMP. Твій всесвіт — твої правила.</p>
+    <a href="index.html">Головна</a>
+    <a href="catalog.html">Каталог</a>
+    <a href="contacts.html">Контакти</a>
+  </footer>
+
+  <script>
+    const contactForm = document.getElementById("contactForm");
+    const contactStatus = document.getElementById("contactStatus");
+
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(contactForm);
+      const name = formData.get("name").trim();
+      const email = formData.get("email").trim();
+      const topic = formData.get("topic");
+      const message = formData.get("message").trim();
+
+      const recipient = "YOUR_EMAIL@example.com";
+
+      if (recipient === "YOUR_EMAIL@example.com") {
+        contactStatus.textContent =
+          "Форма готова! Щоб надсилати повідомлення, заміни YOUR_EMAIL@example.com на свою справжню електронну адресу в коді.";
+        return;
+      }
+
+      const subject = encodeURIComponent("VAMP — " + topic);
+      const body = encodeURIComponent(
+        "Ім'я: " + name +
+        "\nЕлектронна пошта: " + email +
+        "\nТема: " + topic +
+        "\n\nПовідомлення:\n" + message
+      );
+
+      contactStatus.textContent =
+        "Відкриваємо поштову програму для надсилання повідомлення.";
+
+      window.location.href =
+        "mailto:" + recipient +
+        "?subject=" + subject +
+        "&body=" + body;
+    });
+  </script>
+
+</body>
+</html>
