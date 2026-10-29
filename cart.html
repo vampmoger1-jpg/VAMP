@@ -4,223 +4,675 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090612">
-  <meta name="description" content="Твій кошик VAMP — обери блокноти для власного всесвіту.">
-  <title>Кошик — VAMP</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <title>Кошик | VAMP</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #f5edff;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 15% 15%, #321052 0%, transparent 38%),
+        radial-gradient(ellipse at 85% 70%, #211044 0%, transparent 35%),
+        #08060d;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(9, 7, 16, .96);
+      border-bottom: 1px solid #492461;
+      backdrop-filter: blur(15px);
+    }
+
+    .site-header nav {
+      max-width: 1250px;
+      min-height: 76px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px 22px;
+    }
+
+    .site-header nav a {
+      color: #e9ddf7;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color .2s;
+    }
+
+    .site-header nav a:hover,
+    .site-header nav a[aria-current="page"] {
+      color: #c084fc;
+    }
+
+    .site-header .site-logo {
+      margin-right: auto;
+      color: white;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+
+    .site-logo span {
+      color: #a855f7;
+    }
+
+    .container {
+      width: min(1150px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    .page-heading {
+      padding: 65px 0 35px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: #c084fc;
+      letter-spacing: 4px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 58px);
+      margin-bottom: 12px;
+    }
+
+    .page-heading p {
+      color: #bdb0cd;
+    }
+
+    .cart-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 25px;
+      align-items: start;
+      padding-bottom: 80px;
+    }
+
+    .cart-panel,
+    .summary {
+      background: rgba(20, 13, 30, .88);
+      border: 1px solid rgba(168, 85, 247, .25);
+      border-radius: 22px;
+      padding: 25px;
+    }
+
+    .panel-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .panel-heading h2,
+    .summary h2 {
+      font-size: 21px;
+    }
+
+    .muted {
+      color: #a99ab9;
+      font-size: 13px;
+    }
+
+    .clear-button {
+      background: transparent;
+      border: 0;
+      color: #c084fc;
+      font-size: 13px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 90px minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      padding: 20px 0;
+      border-top: 1px solid #30213b;
+    }
+
+    .product-picture {
+      width: 90px;
+      height: 115px;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 50% 30%, #63358a, transparent 60%),
+        linear-gradient(145deg, #29123c, #100b19);
+      border: 1px solid #603c7a;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: #e9d5ff;
+      font-size: 30px;
+    }
+
+    .product-picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-name {
+      font-size: 17px;
+      margin-bottom: 7px;
+      overflow-wrap: anywhere;
+    }
+
+    .product-price {
+      color: #d8b4fe;
+      font-weight: bold;
+      margin-bottom: 13px;
+    }
+
+    .quantity {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #503261;
+      border-radius: 9px;
+      overflow: hidden;
+    }
+
+    .quantity button {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      color: white;
+      background: #281535;
+    }
+
+    .quantity button:hover {
+      background: #61358a;
+    }
+
+    .quantity span {
+      min-width: 35px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .item-right {
+      text-align: right;
+      min-width: 90px;
+    }
+
+    .item-total {
+      font-weight: bold;
+      margin-bottom: 15px;
+      white-space: nowrap;
+    }
+
+    .remove-button {
+      color: #bba7cc;
+      background: transparent;
+      border: 0;
+      font-size: 13px;
+    }
+
+    .remove-button:hover {
+      color: #fb7185;
+    }
+
+    .summary h2 {
+      margin-bottom: 23px;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 17px;
+      color: #c8bbd6;
+      font-size: 14px;
+    }
+
+    .summary-line strong {
+      color: white;
+      text-align: right;
+    }
+
+    .summary-total {
+      border-top: 1px solid #493052;
+      padding-top: 20px;
+      margin-top: 20px;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .checkout-button,
+    .continue-button {
+      display: block;
+      width: 100%;
+      text-align: center;
+      border-radius: 11px;
+      padding: 15px;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .checkout-button {
+      background: linear-gradient(135deg, #a855f7, #6d28d9);
+      color: white;
+      border: 0;
+      margin-top: 25px;
+      box-shadow: 0 0 25px #8b5cf622;
+    }
+
+    .checkout-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px #8b5cf655;
+    }
+
+    .checkout-button:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .continue-button {
+      border: 1px solid #624078;
+      color: #e9ddf7;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .continue-button:hover {
+      background: #24132f;
+    }
+
+    .secure-note {
+      text-align: center;
+      color: #9484a4;
+      font-size: 12px;
+      margin-top: 20px;
+    }
+
+    .empty-cart {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .empty-icon {
+      font-size: 58px;
+      margin-bottom: 20px;
+    }
+
+    .empty-cart h2 {
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .empty-cart p {
+      color: #bdb0cd;
+      margin-bottom: 25px;
+    }
+
+    .empty-cart .continue-button {
+      max-width: 260px;
+      margin: auto;
+      background: #321849;
+    }
+
+    .notice {
+      color: #d8b4fe;
+      background: #291536;
+      border: 1px solid #58346d;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 13px;
+      margin-top: 15px;
+    }
+
+    footer {
+      border-top: 1px solid #2b1b39;
+      text-align: center;
+      padding: 28px 15px;
+      color: #8e819e;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: #c084fc;
+      letter-spacing: 3px;
+    }
+
+    @media (max-width: 850px) {
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .site-header nav {
+        gap: 12px 15px;
+      }
+
+      .site-header .site-logo {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+      }
+
+      .cart-panel,
+      .summary {
+        padding: 17px;
+      }
+
+      .cart-item {
+        grid-template-columns: 70px minmax(0, 1fr);
+        gap: 13px;
+      }
+
+      .product-picture {
+        width: 70px;
+        height: 95px;
+      }
+
+      .item-right {
+        grid-column: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+      }
+
+      .item-total {
+        margin-bottom: 0;
+      }
+    }
+  </style>
 </head>
 
-<body class="cart-page">
+<body>
 
-  <header class="site-header">
-    <a class="logo" href="index.html">
-      VAMP<span class="logo-dot">.</span>
-    </a>
+<header class="site-header">
+  <nav>
+    <a href="index.html" class="site-logo">VAMP<span>.</span></a>
+    <a href="index.html">Головна</a>
+    <a href="catalog.html">Каталог</a>
+    <a href="about.html">Про нас</a>
+    <a href="delivery.html">Доставка</a>
+    <a href="contacts.html">Контакти</a>
+    <a href="favorites.html">♡ Обране</a>
+    <a href="cart.html" aria-current="page">Кошик 🛒</a>
+  </nav>
+</header>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
-      ☰
-    </button>
+<main class="container">
+  <section class="page-heading">
+    <div class="eyebrow">ТВОЇ ВИБОРИ</div>
+    <h1>Мій кошик <span style="color:#c084fc">.</span></h1>
+    <p>Усе, що потрібно для твоїх ідей, в одному місці.</p>
+  </section>
 
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Головна</a>
-      <a href="catalog.html">Каталог</a>
-      <a href="about.html">Про нас</a>
-      <a href="contacts.html">Контакти</a>
-    </nav>
+  <div class="cart-layout">
+    <section class="cart-panel">
+      <div class="panel-heading">
+        <h2>Твої товари</h2>
+        <button class="clear-button" id="clearCart">Очистити кошик</button>
+      </div>
 
-    <div class="header-actions">
-      <button class="icon-button" id="searchToggle" aria-label="Пошук">⌕</button>
-      <a class="header-link" href="favorites.html">
-        ♡ <span id="favoritesCount">0</span>
+      <div id="cartItems"></div>
+    </section>
+
+    <aside class="summary">
+      <h2>Підсумок замовлення</h2>
+
+      <div class="summary-line">
+        <span>Товарів</span>
+        <strong id="itemCount">0 шт.</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>Вартість товарів</span>
+        <strong id="subtotal">0 ₴</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>Доставка</span>
+        <strong id="deliveryCost">За тарифом</strong>
+      </div>
+
+      <div class="summary-line summary-total">
+        <span>Разом</span>
+        <strong id="total">0 ₴</strong>
+      </div>
+
+      <button class="checkout-button" id="checkoutButton">
+        Оформити замовлення →
+      </button>
+
+      <a href="catalog.html" class="continue-button">
+        ← Продовжити покупки
       </a>
-      <a class="header-link cart-link active" href="cart.html">
-        🛍 <span id="cartCount">0</span>
-      </a>
-    </div>
-  </header>
 
-  <div class="global-search" id="searchBox" hidden>
-    <input
-      type="search"
-      id="globalSearch"
-      placeholder="Знайти свій всесвіт..."
-      aria-label="Пошук товарів"
-    >
+      <p class="secure-note">
+        ✦ Доставка та оплата узгоджуються під час оформлення
+      </p>
+
+      <div class="notice">
+        Це локальний демонстраційний кошик. Він ще не приймає реальні платежі.
+      </div>
+    </aside>
   </div>
+</main>
 
-  <main>
-    <section class="page-hero cart-hero">
-      <div class="page-hero-content">
-        <span class="eyebrow">ТВОЄ МАЙБУТНЄ ЗАМОВЛЕННЯ</span>
-        <h1>ТВІЙ <span class="gradient-text">КОШИК</span></h1>
-        <p>Зібрали щось особливе? Перевір своє замовлення нижче.</p>
+<footer>
+  <strong>VAMP.</strong>
+  <p>Твій світ починається з ідеї.</p>
+  <p>© 2026 VAMP. Усі права захищено.</p>
+</footer>
 
-        <div class="breadcrumb">
-          <a href="index.html">Головна</a>
-          <span>/</span>
-          <span>Кошик</span>
-        </div>
-      </div>
+<script>
+  const CART_KEY = "vampCart";
 
-      <div class="catalog-orbit orbit-one"></div>
-      <div class="catalog-orbit orbit-two"></div>
-    </section>
+  const cartItems = document.getElementById("cartItems");
+  const itemCount = document.getElementById("itemCount");
+  const subtotal = document.getElementById("subtotal");
+  const total = document.getElementById("total");
+  const clearCartButton = document.getElementById("clearCart");
+  const checkoutButton = document.getElementById("checkoutButton");
 
-    <section class="section cart-section">
-      <div class="cart-layout">
+  function readCart() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+      if (!Array.isArray(saved)) return [];
 
-        <div class="cart-main">
-          <div class="cart-section-heading">
-            <div>
-              <span class="eyebrow">ТВОЯ КОЛЕКЦІЯ</span>
-              <h2>Обрані блокноти</h2>
-            </div>
+      return saved.map((item, index) => {
+        const price = Number(item.price ?? item.cost ?? 0);
+        const quantity = Number(item.quantity ?? item.qty ?? 1);
 
-            <a href="catalog.html" class="text-link">
-              ← Продовжити покупки
-            </a>
-          </div>
+        return {
+          ...item,
+          id: String(item.id ?? item.productId ?? item.name ?? index),
+          name: String(item.name ?? item.title ?? "Блокнот VAMP"),
+          price: Number.isFinite(price) && price >= 0 ? price : 0,
+          quantity: Number.isFinite(quantity)
+            ? Math.max(1, Math.min(99, Math.floor(quantity)))
+            : 1,
+          image: typeof item.image === "string" ? item.image : ""
+        };
+      });
+    } catch {
+      return [];
+    }
+  }
 
-          <div class="cart-table-heading">
-            <span>Товар</span>
-            <span>Ціна</span>
-            <span>Кількість</span>
-            <span>Сума</span>
-          </div>
+  let cart = readCart();
 
-          <div id="cartItems" class="cart-items">
-            <!-- Товари кошика підставляються через app.js -->
-          </div>
+  function saveCart() {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  }
 
-          <div class="cart-empty" id="cartEmpty" hidden>
-            <div class="cart-empty-symbol">✦</div>
-            <h3>Твій кошик поки порожній</h3>
-            <p>
-              У кожного всесвіту є своя історія.
-              Почни свою з блокнота VAMP.
-            </p>
-            <a href="catalog.html" class="btn btn-primary">
-              Перейти до каталогу ↗
-            </a>
-          </div>
+  function money(amount) {
+    return new Intl.NumberFormat("uk-UA", {
+      maximumFractionDigits: 2
+    }).format(amount) + " ₴";
+  }
 
-          <div class="cart-bottom-actions">
-            <a href="catalog.html" class="btn btn-outline">
-              ← Повернутися до каталогу
-            </a>
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[char]);
+  }
 
-            <button
-              type="button"
-              class="text-button"
-              id="clearCart"
-            >
-              Очистити кошик
-            </button>
-          </div>
-        </div>
+  function renderCart() {
+    cartItems.innerHTML = "";
 
-        <aside class="cart-summary">
-          <span class="eyebrow">ПІДСУМОК</span>
-          <h2>Твоє замовлення</h2>
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const sum = cart.reduce(
+      (amount, item) => amount + item.price * item.quantity, 0
+    );
 
-          <div class="summary-row">
-            <span>Товарів у кошику</span>
-            <strong id="summaryItems">0</strong>
-          </div>
+    itemCount.textContent = count + (count === 1 ? " шт." : " шт.");
+    subtotal.textContent = money(sum);
+    total.textContent = money(sum);
 
-          <div class="summary-row">
-            <span>Вартість товарів</span>
-            <strong id="summarySubtotal">0 ₴</strong>
-          </div>
+    checkoutButton.disabled = cart.length === 0;
+    clearCartButton.hidden = cart.length === 0;
 
-          <div class="summary-row">
-            <span>Доставка</span>
-            <span class="muted">За тарифами перевізника</span>
-          </div>
-
-          <div class="summary-divider"></div>
-
-          <div class="summary-total">
-            <span>Разом</span>
-            <strong id="cartTotal">0 ₴</strong>
-          </div>
-
-          <a
-            href="checkout.html"
-            class="btn btn-primary btn-checkout"
-            id="checkoutButton"
-          >
-            Оформити замовлення <span>↗</span>
+    if (cart.length === 0) {
+      cartItems.innerHTML = `
+        <div class="empty-cart">
+          <div class="empty-icon">🛒</div>
+          <h2>Тут поки порожньо</h2>
+          <p>Обери блокнот, який стане частиною твого світу.</p>
+          <a href="catalog.html" class="continue-button">
+            Перейти до каталогу →
           </a>
+        </div>
+      `;
+      return;
+    }
 
-          <div class="cart-security-note">
-            <span>✦</span>
-            <p>Перевір своє замовлення перед оформленням.</p>
-          </div>
+    cart.forEach(item => {
+      const row = document.createElement("article");
+      row.className = "cart-item";
 
-          <div class="payment-methods">
-            <span>ДЕТАЛІ ОПЛАТИ</span>
-            <div class="payment-labels">
-              <span>Картка</span>
-              <span>При отриманні</span>
-            </div>
-            <p class="muted">
-              Доступні способи оплати підтверджуються під час оформлення.
-            </p>
-          </div>
-        </aside>
+      const picture = item.image
+        ? `<img src="${escapeHTML(item.image)}" alt="">`
+        : `<span>✦</span>`;
 
-      </div>
-    </section>
+      row.innerHTML = `
+        <div class="product-picture">${picture}</div>
 
-    <section class="section cart-recommendations">
-      <div class="section-heading">
         <div>
-          <span class="eyebrow">МОЖЕШ ЩЕ ЗАКОХАТИСЯ</span>
-          <h2>Знайди ще один всесвіт</h2>
+          <h3 class="product-name">${escapeHTML(item.name)}</h3>
+          <div class="product-price">${money(item.price)}</div>
+
+          <div class="quantity">
+            <button type="button" data-action="decrease"
+              data-id="${escapeHTML(item.id)}"
+              aria-label="Зменшити кількість">−</button>
+
+            <span>${item.quantity}</span>
+
+            <button type="button" data-action="increase"
+              data-id="${escapeHTML(item.id)}"
+              aria-label="Збільшити кількість">+</button>
+          </div>
         </div>
 
-        <a href="catalog.html" class="text-link">
-          Усі блокноти ↗
-        </a>
-      </div>
+        <div class="item-right">
+          <div class="item-total">
+            ${money(item.price * item.quantity)}
+          </div>
+          <button type="button" class="remove-button"
+            data-action="remove"
+            data-id="${escapeHTML(item.id)}">
+            Видалити
+          </button>
+        </div>
+      `;
 
-      <div class="product-grid" id="cartRecommendations">
-        <!-- Рекомендовані товари можна додати через app.js -->
-      </div>
-    </section>
-  </main>
+      cartItems.appendChild(row);
+    });
+  }
 
-  <footer class="site-footer">
-    <div class="footer-main">
-      <div class="footer-brand">
-        <a class="logo" href="index.html">
-          VAMP<span class="logo-dot">.</span>
-        </a>
-        <p>Записуй ідеї. Створюй світи. Будь собою.</p>
-      </div>
+  cartItems.addEventListener("click", event => {
+    const button = event.target.closest("button[data-action]");
+    if (!button) return;
 
-      <div class="footer-column">
-        <h4>Навігація</h4>
-        <a href="index.html">Головна</a>
-        <a href="catalog.html">Каталог</a>
-        <a href="about.html">Про нас</a>
-      </div>
+    const id = button.dataset.id;
+    const action = button.dataset.action;
+    const item = cart.find(product => product.id === id);
 
-      <div class="footer-column">
-        <h4>Допомога</h4>
-        <a href="delivery.html">Доставка й оплата</a>
-        <a href="contacts.html">Контакти</a>
-        <a href="favorites.html">Обране</a>
-      </div>
-    </div>
+    if (action === "remove") {
+      cart = cart.filter(product => product.id !== id);
+    } else if (item && action === "increase") {
+      if (item.quantity < 99) item.quantity++;
+    } else if (item && action === "decrease") {
+      if (item.quantity > 1) {
+        item.quantity--;
+      } else {
+        cart = cart.filter(product => product.id !== id);
+      }
+    }
 
-    <div class="footer-bottom">
-      <span>© 2026 VAMP. Усі права захищені.</span>
-      <span>Зроблено з ✦ у власному всесвіті</span>
-    </div>
-  </footer>
+    saveCart();
+    renderCart();
+  });
+
+  clearCartButton.addEventListener("click", () => {
+    if (!cart.length) return;
+
+    if (confirm("Точно очистити весь кошик?")) {
+      cart = [];
+      saveCart();
+      renderCart();
+    }
+  });
+
+  checkoutButton.addEventListener("click", () => {
+    if (cart.length === 0) return;
+
+    // Зберігаємо копію замовлення для сторінки оформлення.
+    sessionStorage.setItem("vampCheckout", JSON.stringify(cart));
+
+    window.location.href = "checkout.html";
+  });
+
+  // Оновлення, якщо кошик змінився в іншій вкладці браузера.
+  window.addEventListener("storage", event => {
+    if (event.key === CART_KEY) {
+      cart = readCart();
+      renderCart();
+    }
+  });
+
+  renderCart();
+</script>
 
 </body>
 </html>

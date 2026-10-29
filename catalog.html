@@ -4,236 +4,777 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090612">
-  <meta name="description" content="Каталог універсальних блокнотів VAMP. Знайди свій стиль серед галактичних колекцій.">
-  <title>Каталог блокнотів — VAMP</title>
+  <title>Каталог | VAMP</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+
+  <style>
+    :root {
+      --bg: #090711;
+      --panel: #151020;
+      --purple: #a855f7;
+      --pink: #e879f9;
+      --text: #faf5ff;
+      --muted: #b6a9c8;
+      --line: rgba(192,132,252,.2);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 15% 0%, #28123e, transparent 40%),
+        radial-gradient(ellipse at 90% 35%, #1d1030, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .catalog-wrap {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 36px 0 80px;
+    }
+
+    .catalog-hero {
+      text-align: center;
+      padding: 45px 0 35px;
+    }
+
+    .catalog-hero .eyebrow {
+      color: #d8b4fe;
+      letter-spacing: 5px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .catalog-hero h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.05;
+      margin: 16px 0;
+      background: linear-gradient(90deg, white, #d8b4fe, #a855f7);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .catalog-hero p {
+      color: var(--muted);
+      max-width: 570px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .catalog-toolbar {
+      display: grid;
+      grid-template-columns: 1fr 190px;
+      gap: 14px;
+      margin: 24px 0 18px;
+    }
+
+    .catalog-toolbar input,
+    .catalog-toolbar select {
+      min-width: 0;
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: #120d1c;
+      color: white;
+      font-size: 14px;
+    }
+
+    .catalog-toolbar input:focus,
+    .catalog-toolbar select:focus {
+      outline: 2px solid var(--purple);
+    }
+
+    .catalog-categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 24px 0 32px;
+    }
+
+    .category-btn {
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      background: #151020;
+      color: #d9cce9;
+      padding: 10px 17px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: #7e22ce;
+      border-color: #c084fc;
+      color: white;
+    }
+
+    .catalog-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 18px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .vamp-product {
+      min-width: 0;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      background: linear-gradient(145deg, #1c1429, #100c18);
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+
+    .vamp-product:hover {
+      transform: translateY(-6px);
+      border-color: rgba(192,132,252,.7);
+      box-shadow: 0 15px 38px rgba(126,34,206,.16);
+    }
+
+    .product-art {
+      height: 245px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 25% 25%, #6b21a8 0, transparent 32%),
+        radial-gradient(circle at 80% 75%, #31205d 0, transparent 40%),
+        #0e0a18;
+    }
+
+    .product-art::before,
+    .product-art::after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: white;
+      box-shadow:
+        38px -48px #d8b4fe,
+        -54px 36px #c084fc,
+        65px 54px white,
+        -70px -65px #e9d5ff,
+        82px -20px #a855f7,
+        -22px 75px white;
+      opacity: .8;
+    }
+
+    .notebook {
+      position: relative;
+      z-index: 1;
+      width: 132px;
+      height: 178px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 5px 12px 12px 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      padding: 12px;
+      box-shadow: 12px 14px 25px rgba(0,0,0,.55);
+      transform: rotate(-7deg);
+      transition: transform .3s;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(255,255,255,.22), transparent 35%),
+        linear-gradient(145deg, #401568, #120b22 75%);
+    }
+
+    .vamp-product:hover .notebook {
+      transform: rotate(0deg) scale(1.04);
+    }
+
+    .notebook::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 9px;
+      width: 1px;
+      background: rgba(255,255,255,.3);
+    }
+
+    .notebook-symbol {
+      font-size: 36px;
+      color: #e9d5ff;
+      text-shadow: 0 0 20px #c084fc;
+    }
+
+    .notebook-brand {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+
+    .notebook-subtitle {
+      font-size: 7px;
+      letter-spacing: 2px;
+      color: #e9d5ff;
+    }
+
+    .art-midnight .notebook {
+      background: linear-gradient(145deg, #35364f, #10101d 75%);
+    }
+
+    .art-lilac .notebook {
+      background: linear-gradient(145deg, #d8b4fe, #6b21a8 75%);
+    }
+
+    .art-lilac .notebook-brand,
+    .art-lilac .notebook-symbol,
+    .art-lilac .notebook-subtitle {
+      color: white;
+    }
+
+    .art-eclipse .notebook {
+      background: radial-gradient(circle at 50% 35%, #f0abfc, #321044 45%, #100817 80%);
+    }
+
+    .art-nebula .notebook {
+      background: linear-gradient(135deg, #164e63, #4c1d95, #160d24);
+    }
+
+    .art-moon .notebook {
+      background: linear-gradient(145deg, #55516f, #171323);
+    }
+
+    .art-shadow .notebook {
+      background: linear-gradient(145deg, #383044, #08070c 80%);
+    }
+
+    .art-universe .notebook {
+      background: linear-gradient(145deg, #4338a8, #a21caf, #100b22);
+    }
+
+    .art-rose .notebook {
+      background: linear-gradient(145deg, #9d174d, #3b102d, #120918);
+    }
+
+    .product-tag {
+      position: absolute;
+      z-index: 2;
+      top: 13px;
+      left: 13px;
+      padding: 6px 10px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 100px;
+      background: rgba(15,9,24,.8);
+      color: #e9d5ff;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    .favorite-btn {
+      position: absolute;
+      z-index: 2;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(12,8,20,.85);
+      color: white;
+      font-size: 19px;
+      cursor: pointer;
+    }
+
+    .favorite-btn.active { color: #f0abfc; }
+
+    .product-info { padding: 17px; }
+
+    .product-color {
+      color: #bba5d5;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .product-info h2 {
+      margin: 7px 0;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .product-description {
+      min-height: 40px;
+      margin: 8px 0 15px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .product-price {
+      color: #d8b4fe;
+      font-size: 20px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .add-cart {
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 12px;
+      background: linear-gradient(135deg, #9333ea, #6d28d9);
+      color: white;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .add-cart:hover { filter: brightness(1.15); }
+
+    .catalog-empty {
+      display: none;
+      padding: 55px 20px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 18px;
+    }
+
+    .catalog-empty h2 { color: white; }
+
+    .reset-btn {
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px 16px;
+      color: white;
+      background: #211432;
+      cursor: pointer;
+    }
+
+    .catalog-toast {
+      position: fixed;
+      z-index: 99;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: calc(100% - 30px);
+      padding: 13px 20px;
+      border: 1px solid #6b21a8;
+      border-radius: 12px;
+      background: #211432;
+      color: white;
+      box-shadow: 0 8px 30px #0008;
+      text-align: center;
+    }
+
+    .catalog-footer {
+      margin-top: 65px;
+      padding: 28px 15px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 1000px) {
+      .catalog-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .product-art { height: 205px; }
+      .notebook { width: 112px; height: 153px; }
+      .catalog-toolbar { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 420px) {
+      .catalog-wrap { width: calc(100% - 22px); }
+      .catalog-grid { gap: 10px; }
+      .product-info { padding: 11px; }
+      .product-info h2 { font-size: 14px; }
+      .product-description { font-size: 11px; }
+      .product-price { font-size: 16px; }
+      .add-cart { padding: 10px 8px; font-size: 10px; }
+      .product-art { height: 175px; }
+      .notebook { width: 94px; height: 133px; }
+    }
+  </style>
 </head>
 
-<body class="catalog-page">
+<body>
+<header class="site-header">
+  <nav>
+    <a href="index.html" class="site-logo">VAMP<span>.</span></a>
+    <a href="index.html">Головна</a>
+    <a href="catalog.html" aria-current="page">Каталог</a>
+    <a href="about.html">Про нас</a>
+    <a href="delivery.html">Доставка</a>
+    <a href="contacts.html">Контакти</a>
+    <a href="favorites.html">♡ Обране</a>
+    <a href="cart.html">Кошик 🛒</a>
+  </nav>
+</header>
 
-  <header class="site-header">
-    <a class="logo" href="index.html" aria-label="VAMP — на головну">
-      VAMP<span class="logo-dot">.</span>
-    </a>
+<main class="catalog-wrap">
+  <section class="catalog-hero">
+    <span class="eyebrow">YOUR OWN UNIVERSE</span>
+    <h1>Каталог VAMP</h1>
+    <p>
+      Знайди блокнот, який стане частиною твого всесвіту.
+      Обирай свій стиль, записуй ідеї та створюй власну історію.
+    </p>
+  </section>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
-      ☰
-    </button>
-
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Головна</a>
-      <a href="catalog.html" class="active">Каталог</a>
-      <a href="about.html">Про нас</a>
-      <a href="contacts.html">Контакти</a>
-    </nav>
-
-    <div class="header-actions">
-      <button class="icon-button" id="searchToggle" aria-label="Пошук">⌕</button>
-      <a class="header-link" href="favorites.html">
-        ♡ <span id="favoritesCount">0</span>
-      </a>
-      <a class="header-link cart-link" href="cart.html">
-        🛍 <span id="cartCount">0</span>
-      </a>
+  <section aria-label="Пошук і фільтри">
+    <div class="catalog-toolbar">
+      <input
+        id="catalogSearch"
+        type="search"
+        placeholder="⌕  Знайти свій блокнот..."
+        aria-label="Пошук товарів"
+      >
+      <select id="catalogSort" aria-label="Сортування товарів">
+        <option value="default">Рекомендовані</option>
+        <option value="price-asc">Спочатку дешевші</option>
+        <option value="price-desc">Спочатку дорожчі</option>
+        <option value="name">За назвою</option>
+      </select>
     </div>
-  </header>
 
-  <div class="global-search" id="searchBox" hidden>
-    <input
-      type="search"
-      id="globalSearch"
-      placeholder="Знайти свій всесвіт..."
-      aria-label="Пошук товарів"
-    >
+    <div class="catalog-categories" id="catalogCategories">
+      <button class="category-btn active" data-category="all">Усі блокноти</button>
+      <button class="category-btn" data-category="purple">Фіолетові</button>
+      <button class="category-btn" data-category="black">Чорні</button>
+      <button class="category-btn" data-category="blue">Космічні</button>
+      <button class="category-btn" data-category="pink">Яскраві</button>
+    </div>
+  </section>
+
+  <div class="catalog-meta">
+    <span id="catalogCount">Завантаження товарів...</span>
+    <span>✦ Колекція VAMP</span>
   </div>
 
-  <main>
-    <section class="page-hero catalog-hero">
-      <div class="page-hero-content">
-        <span class="eyebrow">ТВОЯ ІСТОРІЯ ПОЧИНАЄТЬСЯ ТУТ</span>
-        <h1>КАТАЛОГ <span class="gradient-text">VAMP</span></h1>
-        <p>
-          Не просто блокнот. Твій простір для думок, планів,
-          ідей та маленьких всесвітів.
-        </p>
-        <div class="breadcrumb">
-          <a href="index.html">Головна</a>
-          <span>/</span>
-          <span>Каталог</span>
-        </div>
-      </div>
-      <div class="catalog-orbit orbit-one"></div>
-      <div class="catalog-orbit orbit-two"></div>
-    </section>
+  <section class="catalog-grid" id="catalogProducts" aria-label="Каталог товарів"></section>
 
-    <section class="catalog-section section">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">ЗНАЙДИ СВІЙ СТИЛЬ</span>
-          <h2>Усі блокноти</h2>
-        </div>
-        <p class="muted">Твій світ. Твої правила.</p>
-      </div>
+  <section class="catalog-empty" id="catalogEmpty">
+    <h2>У цій галактиці поки порожньо ✦</h2>
+    <p>Не знайшли потрібного блокнота? Спробуй інший запит.</p>
+    <button class="reset-btn" id="resetFilters">Скинути фільтри</button>
+  </section>
+</main>
 
-      <div class="catalog-layout">
+<footer class="catalog-footer">
+  <p>© 2026 VAMP — твій всесвіт, твої правила.</p>
+  <a href="contacts.html">Зв'язатися з нами</a>
+</footer>
 
-        <aside class="catalog-sidebar">
-          <div class="filter-heading">
-            <h3>Фільтри</h3>
-            <button type="button" id="resetFilters" class="text-button">
-              Скинути
-            </button>
+<div class="catalog-toast" id="catalogToast" hidden role="status"></div>
+
+<script>
+  const products = [
+    {
+      id: "galaxy",
+      name: "VAMP Galaxy",
+      price: 450,
+      color: "purple",
+      colorName: "Фіолетовий",
+      art: "art-galaxy",
+      tag: "БЕСТСЕЛЕР",
+      symbol: "✧",
+      description: "Космічний дизайн для великих ідей."
+    },
+    {
+      id: "midnight",
+      name: "VAMP Midnight",
+      price: 390,
+      color: "black",
+      colorName: "Темний",
+      art: "art-midnight",
+      tag: "МІНІМАЛІЗМ",
+      symbol: "☾",
+      description: "Стриманий стиль для щоденних записів."
+    },
+    {
+      id: "eclipse",
+      name: "VAMP Eclipse",
+      price: 420,
+      color: "purple",
+      colorName: "Аметистовий",
+      art: "art-eclipse",
+      tag: "ХІТ",
+      symbol: "◉",
+      description: "Загадкова енергія сонячного затемнення."
+    },
+    {
+      id: "lilac",
+      name: "VAMP Lilac",
+      price: 370,
+      color: "pink",
+      colorName: "Бузковий",
+      art: "art-lilac",
+      tag: "NEW",
+      symbol: "✿",
+      description: "Світлий настрій для натхненних думок."
+    },
+    {
+      id: "shadow",
+      name: "VAMP Shadow",
+      price: 410,
+      color: "black",
+      colorName: "Чорний",
+      art: "art-shadow",
+      tag: "DARK EDITION",
+      symbol: "✦",
+      description: "Глибокий темний дизайн без зайвого."
+    },
+    {
+      id: "nebula",
+      name: "VAMP Nebula",
+      price: 460,
+      color: "blue",
+      colorName: "Синьо-фіолетовий",
+      art: "art-nebula",
+      tag: "COSMIC",
+      symbol: "☄",
+      description: "Натхнення, що народжується серед зірок."
+    },
+    {
+      id: "moon",
+      name: "VAMP Moon",
+      price: 350,
+      color: "blue",
+      colorName: "Місячний",
+      art: "art-moon",
+      tag: "CLASSIC",
+      symbol: "☾",
+      description: "Спокійний супутник для твоїх думок."
+    },
+    {
+      id: "universe",
+      name: "VAMP Universe",
+      price: 490,
+      color: "pink",
+      colorName: "Космічний мікс",
+      art: "art-universe",
+      tag: "SPECIAL",
+      symbol: "✧",
+      description: "Твій всесвіт — на кожній сторінці."
+    }
+  ];
+
+  const grid = document.getElementById("catalogProducts");
+  const search = document.getElementById("catalogSearch");
+  const sort = document.getElementById("catalogSort");
+  const count = document.getElementById("catalogCount");
+  const empty = document.getElementById("catalogEmpty");
+  const toast = document.getElementById("catalogToast");
+
+  let activeCategory = "all";
+  let toastTimer;
+
+  function readStorage(key) {
+    try {
+      const value = JSON.parse(localStorage.getItem(key) || "[]");
+      return Array.isArray(value) ? value : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveStorage(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch {
+      showToast("Не вдалося зберегти зміни в браузері.");
+      return false;
+    }
+  }
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.hidden = true;
+    }, 2600);
+  }
+
+  function money(value) {
+    return value.toLocaleString("uk-UA") + " ₴";
+  }
+
+  function renderProducts() {
+    const query = search.value.trim().toLowerCase();
+
+    let visible = products.filter(product => {
+      const matchesCategory =
+        activeCategory === "all" || product.color === activeCategory;
+
+      const matchesSearch =
+        (product.name + " " + product.colorName + " " + product.description)
+          .toLowerCase()
+          .includes(query);
+
+      return matchesCategory && matchesSearch;
+    });
+
+    if (sort.value === "price-asc") {
+      visible.sort((a, b) => a.price - b.price);
+    } else if (sort.value === "price-desc") {
+      visible.sort((a, b) => b.price - a.price);
+    } else if (sort.value === "name") {
+      visible.sort((a, b) => a.name.localeCompare(b.name, "uk"));
+    }
+
+    const favorites = readStorage("vampFavorites");
+
+    grid.innerHTML = visible.map(product => {
+      const isFavorite = favorites.some(item =>
+        typeof item === "string"
+          ? item === product.id
+          : item.id === product.id
+      );
+
+      return `
+        <article class="vamp-product">
+          <div class="product-art ${product.art}">
+            <span class="product-tag">${product.tag}</span>
+            <button
+              class="favorite-btn ${isFavorite ? "active" : ""}"
+              data-favorite="${product.id}"
+              aria-label="${isFavorite ? "Видалити з обраного" : "Додати в обране"}"
+              aria-pressed="${isFavorite}"
+              type="button"
+            >${isFavorite ? "♥" : "♡"}</button>
+
+            <div class="notebook" aria-label="Декоративне зображення блокнота">
+              <span class="notebook-symbol">${product.symbol}</span>
+              <span class="notebook-brand">VAMP</span>
+              <span class="notebook-subtitle">YOUR UNIVERSE</span>
+            </div>
           </div>
 
-          <div class="filter-group">
-            <h4>Пошук</h4>
-            <input
-              class="form-input"
-              type="search"
-              id="catalogSearch"
-              placeholder="Назва блокнота..."
-            >
+          <div class="product-info">
+            <span class="product-color">${product.colorName}</span>
+            <h2>${product.name}</h2>
+            <p class="product-description">${product.description}</p>
+            <div class="product-bottom">
+              <span class="product-price">${money(product.price)}</span>
+              <button class="add-cart" type="button" data-cart="${product.id}">
+                + Кошик
+              </button>
+            </div>
           </div>
+        </article>
+      `;
+    }).join("");
 
-          <div class="filter-group">
-            <h4>Колекція</h4>
-            <label class="filter-option">
-              <input type="checkbox" name="category" value="galaxy">
-              <span>Galaxy</span>
-            </label>
-            <label class="filter-option">
-              <input type="checkbox" name="category" value="minimal">
-              <span>Minimal</span>
-            </label>
-            <label class="filter-option">
-              <input type="checkbox" name="category" value="dark">
-              <span>Dark</span>
-            </label>
-            <label class="filter-option">
-              <input type="checkbox" name="category" value="pastel">
-              <span>Pastel</span>
-            </label>
-          </div>
+    count.textContent = `Знайдено товарів: ${visible.length}`;
+    empty.style.display = visible.length ? "none" : "block";
+    grid.style.display = visible.length ? "grid" : "none";
+  }
 
-          <div class="filter-group">
-            <h4>Ціна</h4>
-            <label class="filter-option">
-              <input type="radio" name="price" value="all" checked>
-              <span>Будь-яка</span>
-            </label>
-            <label class="filter-option">
-              <input type="radio" name="price" value="low">
-              <span>До 300 ₴</span>
-            </label>
-            <label class="filter-option">
-              <input type="radio" name="price" value="middle">
-              <span>300–400 ₴</span>
-            </label>
-            <label class="filter-option">
-              <input type="radio" name="price" value="high">
-              <span>Від 400 ₴</span>
-            </label>
-          </div>
+  document.getElementById("catalogCategories").addEventListener("click", event => {
+    const button = event.target.closest("[data-category]");
+    if (!button) return;
 
-          <div class="sidebar-promo">
-            <span class="promo-symbol">✦</span>
-            <h4>Створи власний всесвіт</h4>
-            <p>Обери блокнот, який надихатиме тебе щодня.</p>
-          </div>
-        </aside>
+    activeCategory = button.dataset.category;
 
-        <div class="catalog-main">
-          <div class="catalog-toolbar">
-            <p class="muted">
-              Колекція VAMP
-            </p>
+    document.querySelectorAll(".category-btn").forEach(item => {
+      item.classList.toggle("active", item === button);
+    });
 
-            <label class="sort-control">
-              <span>Сортувати:</span>
-              <select id="catalogSort" class="form-input">
-                <option value="default">За замовчуванням</option>
-                <option value="price-asc">Спочатку дешевші</option>
-                <option value="price-desc">Спочатку дорожчі</option>
-                <option value="name-asc">За назвою</option>
-              </select>
-            </label>
-          </div>
+    renderProducts();
+  });
 
-          <div
-            class="product-grid"
-            id="catalogProducts"
-            aria-live="polite"
-          >
-            <!-- Товари автоматично додаються через app.js -->
-          </div>
+  search.addEventListener("input", renderProducts);
+  sort.addEventListener("change", renderProducts);
 
-          <div class="empty-state" id="catalogEmpty" hidden>
-            <span class="empty-icon">✦</span>
-            <h3>У цьому всесвіті поки порожньо</h3>
-            <p>Спробуй змінити пошук або фільтри.</p>
-            <button type="button" class="btn btn-primary" id="resetEmptyFilters">
-              Показати всі блокноти
-            </button>
-          </div>
+  document.getElementById("resetFilters").addEventListener("click", () => {
+    search.value = "";
+    sort.value = "default";
+    activeCategory = "all";
 
-        </div>
-      </div>
-    </section>
+    document.querySelectorAll(".category-btn").forEach(button => {
+      button.classList.toggle("active", button.dataset.category === "all");
+    });
 
-    <section class="newsletter-section section">
-      <div class="newsletter-content">
-        <span class="eyebrow">ЛИСТИ З ГАЛАКТИКИ VAMP</span>
-        <h2>Трохи магії у твоїй пошті</h2>
-        <p>Нові колекції, натхнення та новини нашого всесвіту.</p>
+    renderProducts();
+  });
 
-        <form id="newsletterForm" class="newsletter-form">
-          <input
-            type="email"
-            id="newsletterEmail"
-            placeholder="Твоя електронна пошта"
-            required
-          >
-          <button class="btn btn-primary" type="submit">
-            Приєднатися ↗
-          </button>
-        </form>
+  grid.addEventListener("click", event => {
+    const cartButton = event.target.closest("[data-cart]");
+    const favoriteButton = event.target.closest("[data-favorite]");
 
-        <p class="form-note" id="newsletterMessage">
-          Підписуючись, ти погоджуєшся отримувати новини VAMP.
-        </p>
-      </div>
-    </section>
-  </main>
+    if (cartButton) {
+      const product = products.find(item => item.id === cartButton.dataset.cart);
+      if (!product) return;
 
-  <footer class="site-footer">
-    <div class="footer-main">
-      <div class="footer-brand">
-        <a class="logo" href="index.html">VAMP<span class="logo-dot">.</span></a>
-        <p>Записуй ідеї. Створюй світи. Будь собою.</p>
-      </div>
+      const cart = readStorage("vampCart");
+      const existing = cart.find(item => item.id === product.id);
 
-      <div class="footer-column">
-        <h4>Навігація</h4>
-        <a href="index.html">Головна</a>
-        <a href="catalog.html">Каталог</a>
-        <a href="about.html">Про нас</a>
-      </div>
+      if (existing) {
+        existing.quantity = (Number(existing.quantity) || 1) + 1;
+      } else {
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          quantity: 1
+        });
+      }
 
-      <div class="footer-column">
-        <h4>Покупцям</h4>
-        <a href="delivery.html">Доставка й оплата</a>
-        <a href="contacts.html">Контакти</a>
-        <a href="cart.html">Кошик</a>
-      </div>
-    </div>
+      if (saveStorage("vampCart", cart)) {
+        showToast(`${product.name} додано до кошика ✦`);
+      }
+    }
 
-    <div class="footer-bottom">
-      <span>© 2026 VAMP. Усі права захищені.</span>
-      <span>Зроблено з ✦ у власному всесвіті</span>
-    </div>
-  </footer>
+    if (favoriteButton) {
+      const id = favoriteButton.dataset.favorite;
+      const favorites = readStorage("vampFavorites");
+      const index = favorites.findIndex(item =>
+        typeof item === "string" ? item === id : item.id === id
+      );
 
+      if (index >= 0) {
+        favorites.splice(index, 1);
+        if (saveStorage("vampFavorites", favorites)) {
+          showToast("Видалено з обраного");
+        }
+      } else {
+        favorites.push(id);
+        if (saveStorage("vampFavorites", favorites)) {
+          showToast("Додано до обраного ♥");
+        }
+      }
+
+      renderProducts();
+    }
+  });
+
+  renderProducts();
+</script>
 </body>
 </html>
