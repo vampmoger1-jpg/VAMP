@@ -4,301 +4,454 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090612">
-  <meta name="description" content="Дізнайся більше про VAMP — бренд блокнотів для твоїх ідей, планів і творчості.">
-  <title>Про нас — VAMP</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <title>Про нас | VAMP</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 20%, #321052 0%, transparent 38%),
+        radial-gradient(ellipse at 85% 60%, #1d1042 0%, transparent 35%),
+        #08060d;
+      color: #f5edff;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ВЕРХНЄ МЕНЮ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 7, 16, 0.96);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.35);
+      backdrop-filter: blur(16px);
+    }
+
+    .site-header nav {
+      width: min(1250px, calc(100% - 32px));
+      min-height: 76px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px 24px;
+      padding: 14px 0;
+    }
+
+    .site-header nav a {
+      color: #e9ddf7;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .site-header nav a:hover,
+    .site-header nav a[aria-current="page"] {
+      color: #c084fc;
+    }
+
+    .site-header .site-logo {
+      margin-right: auto;
+      color: white;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+
+    .site-logo span {
+      color: #a855f7;
+    }
+
+    /* ГОЛОВНИЙ ЕКРАН */
+    .hero {
+      min-height: 520px;
+      padding: 100px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: #8b5cf6;
+      filter: blur(150px);
+      opacity: 0.22;
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: #d8b4fe;
+      border: 1px solid #7135a5;
+      border-radius: 30px;
+      padding: 7px 18px;
+      font-size: 12px;
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 1.1;
+      margin-bottom: 25px;
+      letter-spacing: -2px;
+    }
+
+    h1 span {
+      color: #c084fc;
+      text-shadow: 0 0 35px rgba(168, 85, 247, 0.4);
+    }
+
+    .hero p {
+      color: #c9bdd8;
+      font-size: 18px;
+      max-width: 650px;
+      margin: 0 auto 35px;
+    }
+
+    .button {
+      display: inline-block;
+      background: linear-gradient(135deg, #a855f7, #6d28d9);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+      transition: 0.25s;
+    }
+
+    .button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 38px rgba(168, 85, 247, 0.45);
+    }
+
+    /* ЗАГАЛЬНІ СЕКЦІЇ */
+    .section {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 75px 0;
+    }
+
+    .section-label {
+      color: #c084fc;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .section p {
+      color: #c9bdd8;
+      font-size: 16px;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .story-visual {
+      min-height: 350px;
+      border: 1px solid rgba(192, 132, 252, 0.3);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 50% 40%, #54217b 0%, transparent 40%),
+        linear-gradient(145deg, #21102e, #0d0a16);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: inset 0 0 60px rgba(139, 92, 246, 0.08);
+    }
+
+    .notebook-symbol {
+      width: 150px;
+      height: 200px;
+      border-radius: 10px 18px 18px 10px;
+      background: linear-gradient(145deg, #8b5cf6, #291044);
+      border-left: 8px solid #d8b4fe;
+      box-shadow: 12px 18px 40px #0008, 0 0 45px #8b5cf655;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      transform: rotate(-5deg);
+    }
+
+    .notebook-symbol span {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    .story-visual p {
+      color: #d8b4fe;
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    /* НАШІ ЦІННОСТІ */
+    .values-heading {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .value-card {
+      padding: 30px 25px;
+      background: rgba(24, 15, 35, 0.85);
+      border: 1px solid rgba(168, 85, 247, 0.22);
+      border-radius: 20px;
+      transition: 0.25s;
+    }
+
+    .value-card:hover {
+      transform: translateY(-7px);
+      border-color: #a855f7;
+      background: rgba(43, 22, 62, 0.9);
+    }
+
+    .value-icon {
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      background: #321849;
+      border-radius: 15px;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .value-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .value-card p {
+      font-size: 14px;
+      color: #bdb0cd;
+    }
+
+    /* ФІНАЛЬНИЙ БЛОК */
+    .cta {
+      width: min(1100px, calc(100% - 40px));
+      margin: 35px auto 85px;
+      padding: 65px 25px;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 28px;
+      background:
+        radial-gradient(ellipse at top, #43205e, transparent 65%),
+        #130d1d;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      color: #c9bdd8;
+      margin-bottom: 28px;
+    }
+
+    footer {
+      border-top: 1px solid #2b1b39;
+      padding: 28px 20px;
+      text-align: center;
+      color: #8e819e;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: #c084fc;
+      letter-spacing: 3px;
+    }
+
+    @media (max-width: 800px) {
+      .site-header nav {
+        gap: 12px 16px;
+        justify-content: center;
+      }
+
+      .site-header .site-logo {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+      }
+
+      .story {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 450px;
+        padding: 70px 20px;
+      }
+    }
+  </style>
 </head>
 
-<body class="about-page">
+<body>
 
   <header class="site-header">
-    <a class="logo" href="index.html">
-      VAMP<span class="logo-dot">.</span>
-    </a>
-
-    <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
-      ☰
-    </button>
-
-    <nav class="nav-links" id="navLinks">
+    <nav>
+      <a href="index.html" class="site-logo">VAMP<span>.</span></a>
       <a href="index.html">Головна</a>
       <a href="catalog.html">Каталог</a>
-      <a href="about.html" class="active">Про нас</a>
+      <a href="about.html" aria-current="page">Про нас</a>
+      <a href="delivery.html">Доставка</a>
       <a href="contacts.html">Контакти</a>
+      <a href="favorites.html">♡ Обране</a>
+      <a href="cart.html">Кошик 🛒</a>
     </nav>
-
-    <div class="header-actions">
-      <button class="icon-button" id="searchToggle" aria-label="Пошук">⌕</button>
-      <a class="header-link" href="favorites.html">
-        ♡ <span id="favoritesCount">0</span>
-      </a>
-      <a class="header-link cart-link" href="cart.html">
-        🛍 <span id="cartCount">0</span>
-      </a>
-    </div>
   </header>
 
-  <div class="global-search" id="searchBox" hidden>
-    <input
-      type="search"
-      id="globalSearch"
-      placeholder="Знайти свій всесвіт..."
-      aria-label="Пошук товарів"
-    >
-  </div>
-
   <main>
-
-    <section class="about-hero">
-      <div class="about-hero-content">
-        <span class="eyebrow">ЛАСКАВО ПРОСИМО У НАШ ВСЕСВІТ</span>
-
-        <h1>
-          МИ — <span class="gradient-text">VAMP</span>
-        </h1>
-
+    <section class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">ЗНАЙОМСТВО З VAMP</span>
+        <h1>Твої думки.<br>Твій світ. <span>VAMP.</span></h1>
         <p>
-          Простір, де думки стають ідеями, ідеї — планами,
-          а звичайні сторінки перетворюються на щось особливе.
+          Ми створюємо універсальні блокноти для ідей, планів,
+          мрій і всього, що робить твій світ особливим.
         </p>
-
-        <div class="about-hero-actions">
-          <a href="catalog.html" class="btn btn-primary">
-            Відкрити колекцію ↗
-          </a>
-
-          <a href="#our-story" class="btn btn-outline">
-            Наша історія ↓
-          </a>
-        </div>
-      </div>
-
-      <div class="about-visual">
-        <div class="about-planet planet-back"></div>
-        <div class="about-planet planet-front"></div>
-        <div class="about-star star-a">✦</div>
-        <div class="about-star star-b">✧</div>
-        <div class="about-star star-c">✦</div>
-
-        <div class="about-visual-label">
-          <span>VAMP</span>
-          <small>YOUR OWN UNIVERSE</small>
-        </div>
+        <a href="catalog.html" class="button">Відкрити каталог ↗</a>
       </div>
     </section>
 
-    <section class="section about-story" id="our-story">
-      <div class="about-story-grid">
-
-        <div class="about-story-art">
-          <div class="story-orbit story-orbit-one"></div>
-          <div class="story-orbit story-orbit-two"></div>
-
-          <div class="story-art-center">
-            <span>✦</span>
-            <strong>V</strong>
-            <small>EST. IN YOUR IMAGINATION</small>
-          </div>
-        </div>
-
-        <div class="about-story-copy">
-          <span class="eyebrow">НАША ІСТОРІЯ</span>
-          <h2>Кожна велика ідея починається з <span class="gradient-text">однієї сторінки</span></h2>
-
-          <p>
-            VAMP — це концепція бренду для тих, хто любить записувати
-            думки, планувати майбутнє, створювати щось нове
-            й знаходити натхнення у звичайних речах.
-          </p>
-
-          <p>
-            Ми хочемо, щоб блокнот був не просто предметом на столі,
-            а особистим простором для творчості, навчання,
-            мрій і маленьких щоденних перемог.
-          </p>
-
-          <p>
-            Саме тому всесвіт VAMP поєднує виразний дизайн,
-            космічну атмосферу та свободу самовираження.
-          </p>
-
-          <a href="catalog.html" class="text-link">
-            Знайти свій блокнот ↗
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="about-values-section section">
-      <div class="section-heading centered-heading">
+    <section class="section">
+      <div class="story">
         <div>
-          <span class="eyebrow">ЩО ДЛЯ НАС ВАЖЛИВО</span>
-          <h2>Філософія VAMP</h2>
+          <div class="section-label">НАША ІСТОРІЯ</div>
+          <h2>Більше, ніж просто блокнот</h2>
+          <p>
+            VAMP — це простір для твоїх ідей. Ми віримо, що кожна
+            велика історія починається з маленької думки, записаної
+            на папері.
+          </p>
+          <br>
+          <p>
+            Саме тому наша концепція — універсальні блокноти,
+            які можна використовувати для навчання, планування,
+            творчості, нотаток і власних проєктів.
+          </p>
+          <br>
+          <p>
+            Ми поєднуємо мінімалістичний стиль, загадкову атмосферу
+            та любов до деталей, щоб звичайні записи ставали частиною
+            твого особистого всесвіту.
+          </p>
         </div>
 
-        <p class="muted">
-          Три речі, які лежать в основі нашого всесвіту.
-        </p>
+        <div class="story-visual">
+          <div class="notebook-symbol">
+            <span>VAMP</span>
+          </div>
+          <p>YOUR OWN UNIVERSE</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="values-heading">
+        <div class="section-label">ЩО НАС ВІДРІЗНЯЄ</div>
+        <h2>Філософія VAMP</h2>
+        <p>Три принципи, які лежать в основі нашої ідеї.</p>
       </div>
 
       <div class="values-grid">
-
         <article class="value-card">
-          <div class="value-card-icon">✧</div>
-          <span class="value-number">01 / ТВОРЧІСТЬ</span>
-          <h3>Думай вільно</h3>
+          <div class="value-icon">✦</div>
+          <h3>Твоя творчість</h3>
           <p>
-            Не обмежуй свої ідеї. Використовуй кожну сторінку
-            так, як хочеться саме тобі.
+            Записуй ідеї, малюй, створюй плани та перетворюй
+            натхнення на щось справжнє.
           </p>
         </article>
 
         <article class="value-card">
-          <div class="value-card-icon">☾</div>
-          <span class="value-number">02 / ІНДИВІДУАЛЬНІСТЬ</span>
-          <h3>Будь собою</h3>
+          <div class="value-icon">☾</div>
+          <h3>Універсальність</h3>
           <p>
-            Твій стиль, твої думки, твої правила.
-            Обирай дизайн, який відображає тебе.
+            Один блокнот — безліч можливостей: від шкільних
+            конспектів до особистих проєктів.
           </p>
         </article>
 
         <article class="value-card">
-          <div class="value-card-icon">✦</div>
-          <span class="value-number">03 / НАТХНЕННЯ</span>
-          <h3>Створюй майбутнє</h3>
+          <div class="value-icon">✧</div>
+          <h3>Власний стиль</h3>
           <p>
-            Записуй цілі, плануй нові справи та перетворюй
-            великі мрії на маленькі кроки.
+            Темна естетика, фіолетові відтінки та космічна
+            атмосфера для тих, хто любить особливі речі.
           </p>
         </article>
-
       </div>
     </section>
 
-    <section class="about-manifesto section">
-      <div class="manifesto-content">
-        <span class="eyebrow">МАНІФЕСТ VAMP</span>
-
-        <h2>
-          ТВОЇ ДУМКИ.<br>
-          ТВОЇ ПРАВИЛА.<br>
-          <span class="gradient-text">ТВІЙ ВСЕСВІТ.</span>
-        </h2>
-
-        <p>
-          Не чекай ідеального моменту, щоб почати.
-          Відкрий першу сторінку — і нехай усе починається.
-        </p>
-
-        <a href="catalog.html" class="btn btn-primary">
-          Почати свою історію ↗
-        </a>
-      </div>
+    <section class="cta">
+      <div class="section-label">ТВІЙ НАСТУПНИЙ РОЗДІЛ</div>
+      <h2>Почни записувати своє</h2>
+      <p>
+        Твої ідеї заслуговують на власний простір.
+        Знайди блокнот, який стане частиною твого світу.
+      </p>
+      <a href="catalog.html" class="button">Перейти до каталогу →</a>
     </section>
-
-    <section class="section about-faq">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Є ЗАПИТАННЯ?</span>
-          <h2>Коротко про VAMP</h2>
-        </div>
-      </div>
-
-      <div class="faq-list">
-
-        <details class="faq-item">
-          <summary>Що таке VAMP?</summary>
-          <p>
-            VAMP — бренд-концепція універсальних блокнотів,
-            створених для записів, планування та творчості.
-          </p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Для чого можна використовувати блокноти?</summary>
-          <p>
-            Для навчання, списків справ, щоденника, нотаток,
-            ескізів, планування та особистих ідей.
-          </p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Як замовити блокнот?</summary>
-          <p>
-            Перейди до каталогу, обери товар і додай його до кошика.
-            Потім відкрий кошик та перейди до оформлення замовлення.
-          </p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Як дізнатися про доставку?</summary>
-          <p>
-            Відкрий сторінку доставки й оплати або зв'яжися з нами
-            через сторінку контактів.
-          </p>
-        </details>
-
-      </div>
-    </section>
-
-    <section class="newsletter-section section">
-      <div class="newsletter-content">
-        <span class="eyebrow">ЛИСТИ З ГАЛАКТИКИ VAMP</span>
-        <h2>Трохи магії у твоїй пошті</h2>
-        <p>Дізнавайся про нові колекції та оновлення.</p>
-
-        <form id="newsletterForm" class="newsletter-form">
-          <input
-            type="email"
-            id="newsletterEmail"
-            placeholder="Твоя електронна пошта"
-            required
-          >
-          <button class="btn btn-primary" type="submit">
-            Приєднатися ↗
-          </button>
-        </form>
-
-        <p class="form-note" id="newsletterMessage">
-          Будь ближче до світу VAMP.
-        </p>
-      </div>
-    </section>
-
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-main">
-      <div class="footer-brand">
-        <a class="logo" href="index.html">
-          VAMP<span class="logo-dot">.</span>
-        </a>
-        <p>Записуй ідеї. Створюй світи. Будь собою.</p>
-      </div>
-
-      <div class="footer-column">
-        <h4>Навігація</h4>
-        <a href="index.html">Головна</a>
-        <a href="catalog.html">Каталог</a>
-        <a href="about.html">Про нас</a>
-      </div>
-
-      <div class="footer-column">
-        <h4>Покупцям</h4>
-        <a href="delivery.html">Доставка й оплата</a>
-        <a href="contacts.html">Контакти</a>
-        <a href="cart.html">Кошик</a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 VAMP. Усі права захищені.</span>
-      <span>Зроблено з ✦ у власному всесвіті</span>
-    </div>
+  <footer>
+    <strong>VAMP.</strong>
+    <p>Твій світ починається з ідеї.</p>
+    <p>© 2026 VAMP. Усі права захищено.</p>
   </footer>
 
 </body>
